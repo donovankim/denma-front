@@ -80,3 +80,6 @@ mongod
 *.njsproj
 *.sln
 
+# project
+# =========
+dist/
