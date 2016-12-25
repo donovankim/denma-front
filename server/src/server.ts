@@ -8,13 +8,13 @@ import * as cookieParser from 'cookie-parser';
 import * as logger from 'morgan';
 
 export class Server {
-    public static instance(): Server {
-        return new Server();
+    public static instance(contextPath?: string): Server {
+        return new Server(contextPath);
     }
 
     public readonly app: express.Application;
 
-    constructor(private rootContextPath: string = '/api') {
+    constructor(private rootContextPath: string = 'api') {
         this.app = express();
         this.config();
         this.initController();
@@ -37,7 +37,7 @@ export class Server {
             if (controllerObj) {
                 let router = controllerObj[controllerName];
                 if (router) {
-                    this.app.use(`${this.rootContextPath}/${controllerName}`, router as express.Router);
+                    this.app.use(`/${this.rootContextPath}/${controllerName}`, router as express.Router);
                     console.log(`controller:[${controllerName}] is loaded.`);
                 }
             }

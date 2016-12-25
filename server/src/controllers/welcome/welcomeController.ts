@@ -1,7 +1,4 @@
-/* app/controllers/welcomeController.ts */
-
-// Import only what we need from express
-import { Router, Request, Response } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import { Welcome } from '../../models/welcomeModel';
 
 const router: Router = Router();
