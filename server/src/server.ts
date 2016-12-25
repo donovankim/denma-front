@@ -8,7 +8,7 @@ import * as cookieParser from 'cookie-parser';
 import * as logger from 'morgan';
 
 export class Server {
-    public static instance(contextPath?: string): Server {
+    public static newInstance(contextPath?: string): Server {
         return new Server(contextPath);
     }
 

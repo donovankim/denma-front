@@ -35,7 +35,7 @@
   version "0.0.29"
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-0.0.29.tgz#fbcfd330573b912ef59eeee14602bface630754b"
 
-"@types/mongodb@*":
+"@types/mongodb@*", "@types/mongodb@^2.1.36":
   version "2.1.36"
   resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-2.1.36.tgz#20a2ff69131ba4dff96ffbd7b578c1d90b86616b"
   dependencies:

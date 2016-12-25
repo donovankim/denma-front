@@ -9,13 +9,18 @@ interface IWelcome extends Document {
 let welcomeSchema = new Schema({
     name: String,
     adult: Boolean,
-    createdAt: Date
+    created: {
+        type:Date,
+        default: Date.now
+    },
+    updated: {
+        type:Date,
+        default: Date.now
+    }
 }).pre('save', function(next) {
-    let now = new Date();
-    if (!this.createdAt) this.createdAt = now;
+    this.updated = new Date();
     next();
 });
 
-let Welcome = MongoDB.model<IWelcome>("Welcome", welcomeSchema);
-
+let Welcome: Model<IWelcome> = MongoDB.model<IWelcome>("Welcome", welcomeSchema);
 export { Welcome };

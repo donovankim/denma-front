@@ -11,6 +11,9 @@ router.get('/:name', (req: Request, res: Response) => {
     let { name } = req.params;
     let welcome = new Welcome({ name: name, adult: true });
     welcome.save();
+    // Welcome.find({},{},function(err, welcomes){
+        
+    // });
     res.send(`Helo, ${name}.`);
 });
 
