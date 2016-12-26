@@ -1,7 +1,9 @@
-import * as MongoDB from 'mongoose';
+import * as mongoose from 'mongoose';
+import { conf } from './config';
+import { log as logger } from './Logger';
 
-MongoDB.connect("mongodb://127.0.0.1:27017/test", () => {
-    console.log("connected to mongo.");
+mongoose.connect(conf.mongodb.url, () => {
+    logger.info("connected to mongo.", conf.mongodb.url);
 });
 
-export { MongoDB } ;
+export { mongoose as MongoDB };

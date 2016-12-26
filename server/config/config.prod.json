@@ -1,0 +1,13 @@
+{
+    "rootContextPath": "api",
+    "listenPort": 3000,
+    "mongodb": {
+        "url": "mongodb://internal.pokercraft.denma.ggportal.net:27017/denma"
+    },
+    "logger": {
+        "level": "trace",
+        "stream": "file",
+        "path": "/var/log/pokercraft/service.log"
+    },
+    "accessLog": "/var/log/pokercraft/access.log"
+}

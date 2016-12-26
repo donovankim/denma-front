@@ -1,0 +1,11 @@
+{
+    "rootContextPath": "api",
+    "listenPort": 3000,
+    "mongodb": {
+        "url": "mongodb://localhost:27017/denma"
+    },
+    "logger": {
+        "level": "trace",
+        "stream": "stdout"
+    }
+}
