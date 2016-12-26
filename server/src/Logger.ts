@@ -1,10 +1,6 @@
 import * as bunyan from 'bunyan';
 import { conf } from './config';
 
-// const LOG_LEVEL : string =conf.logger.level;
-// const LOG_STREAMS = switch(conf.logger.stream){
-// case 'file': 
-// }
 let stream: any = { level: conf.logger.level };
 
 switch (conf.logger.stream) {
