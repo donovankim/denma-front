@@ -5,7 +5,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
-import * as logger from 'morgan';
+import * as morgan from 'morgan';
+import { conf } from './config';
+import { log as logger } from './Logger';
 
 export class Server {
     public static newInstance(contextPath?: string): Server {
@@ -24,7 +26,13 @@ export class Server {
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(cookieParser('xmfostm18'));
-        this.app.use(logger('dev'));
+        if (!conf.accessLog || conf.accessLog === null || typeof conf.accessLog === 'undefined') {
+            this.app.use(morgan('dev'));
+        } else {
+            let accessLogStream = fs.createWriteStream(conf.accessLog, { flags: 'a' });
+            this.app.use(morgan('dev', { stream: accessLogStream }));
+
+        }
     }
 
     private initController() {
@@ -32,13 +40,15 @@ export class Server {
         let controllerNames: string[] = fs.readdirSync(controllerPath)
             .filter((f: string) => fs.statSync(path.join(controllerPath, f)).isDirectory());
 
+        logger.info('controller loading start');
+
         controllerNames.forEach((controllerName: string) => {
             let controllerObj = require(path.join(controllerPath, controllerName));
             if (controllerObj) {
                 let router = controllerObj[controllerName];
                 if (router) {
                     this.app.use(`/${this.rootContextPath}/${controllerName}`, router as express.Router);
-                    console.log(`controller:[${controllerName}] is loaded.`);
+                    logger.info(`controller:[${controllerName}] is loaded.`);
                 }
             }
         });
