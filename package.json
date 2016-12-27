@@ -1,7 +1,12 @@
 {
-    "name": "pokercraft",
+    "name": "pokercraft-api",
     "version": "1.0.0",
-    "main": "server/dist/server.js",
+    "engines": {"node": ">=6.9.0 <6.9.3 "},
+    "main": "app.js",
+    "description": "nodejs pokercraft api server",
+    "publishConfig" : {
+        "registry" : "http://build.denma.sdock.net:8081/repository/denma-npm/"
+    },
     "license": "MIT",
     "dependencies": {
         "body-parser": "^1.15.2",
